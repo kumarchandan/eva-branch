@@ -32,8 +32,7 @@ def process_request(req):
     '''
     Process requests from API.AI
     '''
-    base_url = "https://my316075.sapbydesign.com/sap/byd/odata/cust/v1/purchasing/ \
-    PurchaseOrderCollection/"
+    base_url = "https://my316075.sapbydesign.com/sap/byd/odata/cust/v1/purchasing/PurchaseOrderCollection/"
     query = make_query(req)
     query_url = base_url + query
     print('query url: {}'.format(query_url))
@@ -65,8 +64,7 @@ def make_query(req):
     if action == 'find-status':
         return '?%24filter=PurchaseOrderID%20{}&%24format=json'.format(purchase_order_id)
     elif action == 'find-count':
-        return '$count?%24filter=PurchaseOrderLifeCycleStatusCodeText%20eq%20\'{}\''.format \
-        (purchase_order_status)
+        return '$count?%24filter=PurchaseOrderLifeCycleStatusCodeText%20eq%20\'{}\''.format(purchase_order_status)
     else:
         return {}
 
@@ -75,18 +73,14 @@ def make_webhook_results(data, req):
     if action == 'find-status':
         d = data.get('d')
         value = d.get('results')
-        speech_text = 'The status of Purhcase Order ID {} is {}'.format(value[0] \
-        .get('PurchaseOrderID'), value[0].get('PurchaseOrderLifeCycleStatusCodeText'))
+        speech_text = 'The status of Purhcase Order ID {} is {}'.format(value[0].get('PurchaseOrderID'), value[0].get('PurchaseOrderLifeCycleStatusCodeText'))
     elif action == 'find-count':
         if int(data) > 1:
-            speech_text = 'There are {} Purchase orders in the system with {} status' \
-            .format(data, req.get("result").get("parameters").get("status"))
+            speech_text = 'There are {} Purchase orders in the system with {} status'.format(data, req.get("result").get("parameters").get("status"))
         elif int(data) == 1:
-            speech_text = 'There is {} Purchase order in the system with {} status' \
-            .format(data, req.get("result").get("parameters").get("status"))
+            speech_text = 'There is {} Purchase order in the system with {} status'.format(data, req.get("result").get("parameters").get("status"))
         else:
-            speech_text = 'There are no puchase order in the system with {} status' \
-            .format(req.get("result").get("parameters").get("status"))
+            speech_text = 'There are no puchase order in the system with {} status'.format(req.get("result").get("parameters").get("status"))
     else:
             speech_text = 'What kind of purchase order is this? I can\'t find it'
     

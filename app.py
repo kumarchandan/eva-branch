@@ -13,7 +13,7 @@ APP = Flask(__name__)
 @APP.route('/')
 def home():
     ''' home '''
-    return '<h3?hey there!</h3>'
+    return '<h3>hey there, this is a wonderful day!</h3>'
 
 @APP.route('/webhook', methods=['POST'])
 def webhook():
@@ -92,5 +92,6 @@ def make_webhook_results(data, req):
     }
 
 if __name__ == '__main__':
-    PORT = int(os.getenv('PORT', 5000))
-    APP.run(port=PORT)
+    PORT = int(os.getenv('PORT', 33507))
+    APP.run(debug=False, port=PORT)
+    # APP.run()

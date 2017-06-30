@@ -1,6 +1,7 @@
 ''' api.ai requests and odata access services '''
 
 import json
+import os
 import requests
 
 from flask import Flask, request as flask_request, make_response
@@ -91,4 +92,5 @@ def make_webhook_results(data, req):
     }
 
 if __name__ == '__main__':
-    APP.run()
+    PORT = int(os.getenv('PORT', 5000))
+    APP.run(port=PORT)

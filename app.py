@@ -93,5 +93,6 @@ def make_webhook_results(data, req):
 
 if __name__ == '__main__':
     PORT = int(os.getenv('PORT', 33507))
-    APP.run(debug=False, port=PORT)
+    HOST = os.getenv('IP', '0.0.0.0')
+    APP.run(debug=False, port=PORT, host=HOST)
     # APP.run()

@@ -93,6 +93,6 @@ def make_webhook_results(data, req):
 
 if __name__ == '__main__':
     PORT = int(os.getenv('PORT', 33507))
-    HOST = os.getenv('IP', '0.0.0.0')
+    HOST = os.getenv('IP', '0.0.0.0')                               # http://127.0.0.1:33507/
     APP.run(debug=False, port=PORT, host=HOST)
     # APP.run()
